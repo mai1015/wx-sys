@@ -5,7 +5,7 @@ module.exports = {
         host: "sqld.duapp.com",
         port: 4050,
         user: "GymCikZ1ZvWbf7D7MTLsQp7l",
-        passwd: "DDFSq8gCkkbQHef2RzmtW4bOj6NUhO25",
+        password: "DDFSq8gCkkbQHef2RzmtW4bOj6NUhO25",
         database: "PSNWbFOIozfQZYyABsGV"
     },
     mongodb: {
