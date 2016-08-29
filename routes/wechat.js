@@ -11,11 +11,11 @@ module.exports = wechat(config.wechat).text(function (message, req, res, next) {
     // MsgType: 'text',
     // Content: 'http',
     // MsgId: '5837397576500011341' }
-    if (message.Contect === 'hello world') {
+    if (message.Content === 'hello world') {
         res.reply('Hello world! This is wechat replay from Node.js server.');
         return;
     }
-    if (message.Contect === 'nodejs') {
+    if (message.Content === 'nodejs') {
         res.reply('Node.js');
         return;
     }
