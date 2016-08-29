@@ -10,3 +10,5 @@ lib-cov
 *.out
 *.pid
 *.gz
+*.xml
+_mac
