@@ -1,7 +1,8 @@
 var mysql = require('mysql');
 var config = require('../config/config');
 
-exports.connect = function () {
+exports.connect = function connect() {
     // TODO: CONNECT DATABASE
-    mysql.createConnection(config.mysql);
+    exports.connection = mysql.createConnection(config.mysql);
+    exports.connection.connect();
 }

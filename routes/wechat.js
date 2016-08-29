@@ -11,11 +11,11 @@ module.exports = wechat(config.wechat).text(function (message, req, res, next) {
     // MsgType: 'text',
     // Content: 'http',
     // MsgId: '5837397576500011341' }
-    if (message.Contect == 'hello world') {
+    if (message.Contect === 'hello world') {
         res.reply('Hello world! This is wechat replay from Node.js server.');
         return;
     }
-    if (message.Contect == 'nodejs') {
+    if (message.Contect === 'nodejs') {
         res.reply('Node.js');
         return;
     }
@@ -28,7 +28,7 @@ module.exports = wechat(config.wechat).text(function (message, req, res, next) {
     }]);
 
     console.log("textMsg received");
-    console.log(JSON.stringify(msg));
+    console.log(JSON.stringify(message));
 }).image(function (message, req, res, next) {
     // message为图片内容
     // { ToUserName: 'gh_d3e07d51b513',
@@ -41,7 +41,7 @@ module.exports = wechat(config.wechat).text(function (message, req, res, next) {
     res.reply('你发图片干嘛,我又看不懂。');
 
     console.log("imageMsg received");
-    console.log(JSON.stringify(msg));
+    console.log(JSON.stringify(message));
 }).voice(function (message, req, res, next) {
     // message为音频内容
     // { ToUserName: 'gh_d3e07d51b513',
@@ -85,7 +85,7 @@ module.exports = wechat(config.wechat).text(function (message, req, res, next) {
     // MsgId: '5837398761910985062' }
     res.reply('啊哈哈哈,你住这里啊。');
     console.log("locationMsg received");
-    console.log(JSON.stringify(msg));
+    console.log(JSON.stringify(message));
 }).link(function (message, req, res, next) {
     // message为链接内容
     // { ToUserName: 'gh_d3e07d51b513',
@@ -98,7 +98,7 @@ module.exports = wechat(config.wechat).text(function (message, req, res, next) {
     // MsgId: '5837397520665436492' }
     res.reply('这是什么连接,有病毒吗?');
     console.log("urlMsg received");
-    console.log(JSON.stringify(msg));
+    console.log(JSON.stringify(message));
 }).event(function (message, req, res, next) {
     // message为事件内容
     // { ToUserName: 'gh_d3e07d51b513',
