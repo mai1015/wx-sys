@@ -10,3 +10,4 @@ lib-cov
 *.out
 *.pid
 *.gz
+*.xml
