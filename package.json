@@ -1,7 +1,9 @@
 {
   "name": "wechat-sys",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
+  "author": "mai1015",
+  "description": "Small wechat system",
   "scripts": {
     "start": "node ./bin/www.js"
   },
