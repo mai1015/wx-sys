@@ -1,10 +1,9 @@
 var express = require('express');
 var wechat = require('wechat');
 var config = require('../config/config');
-var router = express.Router();
 
-/* GET home page. */
-router.get('/', wechat(config.wechat, function(req, res, next) {
+/* GET wechat. */
+module.exports = wechat(config.wechat, function(req, res, next) {
     var message = req.weixin;
     if (message.FromUserName === 'diaosi') {
         // 回复屌丝(普通回复)
@@ -38,6 +37,4 @@ router.get('/', wechat(config.wechat, function(req, res, next) {
             }
         ]);
     }
-}));
-
-module.exports = router;
+});
