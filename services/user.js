@@ -13,7 +13,7 @@ function handleError(err) {
  * @public
  */
 User.createUser = function createUser(name) {
-    pool.query('INSERT INTO wx_user(userName) VALUES(' + name + ')', function (err, result) {
+    pool.query('INSERT INTO wx_user(userName) VALUES(\'' + name + '\')', function (err, result) {
         if (err) {
             handleError(err);
             return false;
@@ -37,7 +37,10 @@ User.getUserId = function getUserId(name) {
         }
 
         console.log(rows);
-        
+
+        if (rows.length > 0) {
+            return rows[0].id;
+        }
         return false;
     });
     return false;
