@@ -13,7 +13,7 @@ function handleError(err) {
  * @public
  */
 User.createUser = function createUser(name) {
-    pool.query('INSERT INTO wx_user(userName) VALUES(\'' + name + '\')', function (err, result) {
+    pool.query('INSERT INTO `wx_user`(`userName`) VALUES (\'' + name + '\')', function (err, result) {
         if (err) {
             handleError(err);
             return false;
@@ -30,7 +30,7 @@ User.createUser = function createUser(name) {
  * @return {Number|Boolean} if user exist, return id. else return false
  */
 User.getUserId = function getUserId(name) {
-    pool.query('SELECT * FROM wx_user WHERE userName=\'' + name + '\'', function (err, rows) {
+    pool.query('SELECT * FROM `wx_user` WHERE `userName`=\'' + name + '\'', function (err, rows) {
         if (err) {
             handleError(err);
             return false;
