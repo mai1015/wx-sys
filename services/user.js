@@ -30,16 +30,16 @@ User.createUser = function createUser(name) {
  * @return {Number|Boolean} if user exist, return id. else return false
  */
 User.getUserId = function getUserId(name) {
-    pool.query('SELECT * FROM wx_user WHERE userName=\'' + name + '\'', function (err, result) {
+    pool.query('SELECT * FROM wx_user WHERE userName=\'' + name + '\'', function (err, rows) {
         if (err) {
             handleError(err);
             return false;
         }
 
-        console.log(result);
+        console.log(rows);
 
-        if (result.length !== 0) {
-            return result[0].id;
+        if (rows.length !== 0) {
+            return rows[0].id;
         }
         return false;
     });
