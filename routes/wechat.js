@@ -23,10 +23,10 @@ module.exports = wechat(config.wechat).text(function (message, req, res, next) {
     if (message.Content === 'user') {
         var user = require('../services/user');
         var id = user.getUserId(message.FromUserName);
-        if (id) {
+        if (id !== false) {
             res.reply('Your user id is' + id);
         } else {
-            if (user.createUser(message.FromUserName)) {
+            if (user.createUser(message.FromUserName) !== false) {
                 res.reply('Register new user.');
             } else {
                 res.reply('Register user failed, try later');
