@@ -19,7 +19,7 @@ User.createUser = function createUser(name) {
             return false;
         }
         console.log(result);
-        return true;
+        return result.insertId;
     });
     return false;
 }
@@ -38,7 +38,7 @@ User.getUserId = function getUserId(name) {
 
         console.log(result);
 
-        if (result) {
+        if (result !== '') {
             return result[0].id;
         }
         return false;
