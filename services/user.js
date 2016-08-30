@@ -13,20 +13,15 @@ function handleError(err) {
  * @public
  */
 User.createUser = function createUser(name) {
-    pool.getConnections(function (err, connection) {
-        if (err)
+    pool.query('INSERT INTO wx_user(userName) VALUES(' + name + ')', function (err, result) {
+        if (err) {
             handleError(err);
-
-        connection.query('INSERT INTO wx_user(userName) VALUES(' + name + ')', function (err, result) {
-            if (err) {
-                handleError(err);
-                return false;
-            }
-            console.log(result);
-            connection.release();
-            return true;
-        });
+            return false;
+        }
+        console.log(result);
+        return true;
     });
+    return false;
 }
 
 /**
@@ -35,19 +30,14 @@ User.createUser = function createUser(name) {
  * @return {Number|Boolean} if user exist, return id. else return false
  */
 User.getUserId = function getUserId(name) {
-    pool.getConnections(function (err, connection) {
-        if (err)
+    pool.query('SELECT * FROM wx_user WHERE userName=\'' + name + '\'', function (err, result) {
+        if (err) {
             handleError(err);
+            return false;
+        }
 
-        connection.query('SELECT * FROM wx_user WHERE userName=\'' + name + '\'', function (err, result) {
-            if (err) {
-                handleError(err);
-                return false;
-            }
-
-            console.log(result);
-            connection.release();
-            return result[0].id;
-        });
+        console.log(result);
+        return result[0].id;
     });
+    return false;
 }
