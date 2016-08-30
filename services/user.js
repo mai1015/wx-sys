@@ -13,7 +13,7 @@ function handleError(err) {
  * @public
  */
 User.createUser = function createUser(name) {
-    pool.getConnection(function (err, connection) {
+    pool.getConnections(function (err, connection) {
         if (err)
             handleError(err);
 
@@ -35,7 +35,7 @@ User.createUser = function createUser(name) {
  * @return {Number|Boolean} if user exist, return id. else return false
  */
 User.getUserId = function getUserId(name) {
-    pool.getConnection(function (err, connection) {
+    pool.getConnections(function (err, connection) {
         if (err)
             handleError(err);
 
