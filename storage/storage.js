@@ -4,12 +4,14 @@ var config = require('../config/config');
 config.mysql.waitForConnections = true;
 config.mysql.connectionLimit = 1;
 
-var pool = mysql.createPool(config.mysql).on('connection', function (connection) {
+var pool = mysql.createPool(config.mysql);
+
+pool.on('connection', function (connection) {
     console.log('[Connection] connected!');
 });
 
 exports.query = function query(sql, cb) {
-    pool.getConnections(function (err, connection) {
+    pool.getConnection(function (err, connection) {
         function end(err, connections) {
             process.nextTick(cb, err, connections);
         }
