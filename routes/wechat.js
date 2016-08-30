@@ -20,6 +20,21 @@ module.exports = wechat(config.wechat).text(function (message, req, res, next) {
         return;
     }
 
+    if (message.Content === 'user') {
+        var user = require('../services/user');
+        var id = user.getUserId(message.FromUserName);
+        if (id) {
+            res.reply('Your user id is' + id);
+        } else {
+            if (user.createUser(message.FromUserName)) {
+                res.reply('Register new user.');
+            } else {
+                res.reply('Register user failed, try later');
+            }
+        }
+        return;
+    }
+
     res.reply([{
         title: '功能正在开发中',
         description: '功能加紧开发中,耐心等待',
