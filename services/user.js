@@ -39,6 +39,7 @@ User.getUserId = function getUserId(name) {
         console.log(rows);
 
         if (rows.length > 0) {
+            console.log('id:' + rows);
             return rows[0].id;
         }
         return false;
