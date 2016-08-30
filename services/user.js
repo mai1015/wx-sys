@@ -12,7 +12,7 @@ function handleError(err) {
  * @return {Boolean} if user created
  * @public
  */
-User.prototype.createUser = function createUser(name) {
+User.createUser = function createUser(name) {
     pool.getConnection(function (err, connection) {
         if (err)
             handleError(err);
@@ -31,10 +31,10 @@ User.prototype.createUser = function createUser(name) {
 
 /**
  * Get user id
- * @param name name of the user
+ * @param {string} name of the user
  * @return {Number|Boolean} if user exist, return id. else return false
  */
-User.prototype.getUserId = function getUserId(name) {
+User.getUserId = function getUserId(name) {
     pool.getConnection(function (err, connection) {
         if (err)
             handleError(err);
