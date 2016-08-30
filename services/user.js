@@ -37,7 +37,8 @@ User.getUserId = function getUserId(name) {
         }
 
         console.log(result);
-        return result[0].id ? result[0].id : false;
+
+        return result ? result[0].id : false;
     });
     return false;
 }
