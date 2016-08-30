@@ -38,7 +38,7 @@ User.getUserId = function getUserId(name) {
 
         console.log(result);
 
-        if (result[0].id !== undefined) {
+        if (result.length != 0) {
             return result[0].id;
         }
         return false;
