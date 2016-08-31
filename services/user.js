@@ -9,7 +9,7 @@ function handleError(err) {
 /**
  * Create a new user.
  * @param {string} user id
- * @return {Boolean} if user created
+ * @return {Boolean|Number} if user created
  * @public
  */
 User.createUser = function createUser(name) {
@@ -39,7 +39,7 @@ User.getUserId = function getUserId(name) {
         console.log(rows);
 
         if (rows.length > 0) {
-            console.log('id:' + rows);
+            console.log('id:' + rows[0].id);
             return rows[0].id;
         }
         return false;
