@@ -22,17 +22,20 @@ module.exports = wechat(config.wechat).text(function (message, req, res, next) {
 
     if (message.Content === 'user') {
         var user = require('../services/user');
-        var id = user.getUserId(message.FromUserName);
-        console.log('return:' + id);
-        if (id) {
-            res.reply('Your user id is' + id);
-        } else {
-            if (user.createUser(message.FromUserName)) {
-                res.reply('Register new user.');
+        user.getUserId(message.FromUserName, function (err, id) {
+            console.log('return:' + id);
+            if (id) {
+                res.reply('Your user id is' + id);
             } else {
-                res.reply('Register user failed, try later');
+                user.createUser(message.FromUserName, function (err, id) {
+                    if (err){
+                        res.reply('Register user failed, try later');
+                    }
+                    res.reply('Register new user. your id is ' + id);
+                });
             }
-        }
+        });
+
         return;
     }
 
