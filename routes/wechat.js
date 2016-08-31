@@ -21,8 +21,7 @@ module.exports = wechat(config.wechat).text(function (message, req, res, next) {
     }
 
     if (message.Content === 'user') {
-        var User = require('../module/user');
-        var user = new User(req.app);
+        var user = require('../services/user');
         user.getUserId(message.FromUserName, function (err, id) {
             console.log('return:' + id);
             if (id) {
@@ -36,6 +35,7 @@ module.exports = wechat(config.wechat).text(function (message, req, res, next) {
                 });
             }
         });
+
         return;
     }
 
