@@ -36,7 +36,6 @@ module.exports = wechat(config.wechat).text(function (message, req, res, next) {
                 });
             }
         });
-
         return;
     }
 

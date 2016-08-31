@@ -2,7 +2,7 @@
 module.exports = User;
 
 function User(app) {
-    this.app = app;
+    this.db = app.get('db');
 }
 
 /**
@@ -11,8 +11,7 @@ function User(app) {
  * @param cb
  */
 User.prototype.createUser = function createUser(name, cb) {
-    var db = app.get('db');
-    db.getConnection(function (err, connection) {
+    this.db.getConnection(function (err, connection) {
         if (err) {
             return cb(err);
         }
@@ -34,8 +33,7 @@ User.prototype.createUser = function createUser(name, cb) {
  * @return {Number|Boolean} if user exist, return id. else return false
  */
 User.prototype.getUserId = function getUserId(name, cb) {
-    var db = app.get('db');
-    db.getConnection(function (err, connection) {
+    this.db.getConnection(function (err, connection) {
         if (err) {
             return cb(err);
         }
