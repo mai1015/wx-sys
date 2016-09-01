@@ -1,6 +1,5 @@
 module.exports = {
     domain: 'http://mai1015wx.duapp.com/',
-    port: '18080',
     mysql: {
         host: "sqld.duapp.com",
         port: 4050,

@@ -52,7 +52,12 @@ if (app.get('env') === 'development') {
     app.set('config', require('./config/config'));
     require('./services/logger').register(app);
 }
-require('./services/database');
+
+//require('./services/database');
+var db = require('./services/database');
+db.connect(app.get('config').mysql, function () {
+    console.log('Successfully connect to mysql ');
+});
 
 // production error handler
 // no stacktraces leaked to user

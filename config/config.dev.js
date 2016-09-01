@@ -1,6 +1,5 @@
 module.exports = {
     domain: 'http://localhost:3000/',
-    port: '3000',
     mysql: {
         host: "localhost",
         port: 3306,

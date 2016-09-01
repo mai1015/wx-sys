@@ -21,21 +21,19 @@ module.exports = wechat(config.wechat).text(function (message, req, res, next) {
     }
 
     if (message.Content === 'user') {
-        var user = require('../services/user');
-        user.getUserId(message.FromUserName, function (err, id) {
-            console.log('return:' + id);
-            if (id) {
-                res.reply('Your user id is' + id);
-            } else {
-                user.createUser(message.FromUserName, function (err, id) {
-                    if (err){
-                        res.reply('Register user failed, try later');
-                    }
-                    res.reply('Register new user. your id is ' + id);
-                });
-            }
-        });
+        var wx = require('../module/wx');
+        wx.getUser(message.FromUserName, function (err, result) {
+            if (err) return res.reply(err.message);
 
+            if (result) {
+                return res.reply('Your user id is ' + result.id);
+            }
+
+            wx.createUser(message.FromUserName, function (err) {
+                if (err) return res.send(err.message);
+                return res.reply('Register new user successful.');
+            });
+        });
         return;
     }
 
