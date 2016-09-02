@@ -8,11 +8,11 @@ module.exports = {
         database: "minecraft"
     },
     mongodb: {
-        host: "mongo.duapp.com",
+        host: "127.0.0.1",
         port: 8908,
-        user: "GymCikZ1ZvWbf7D7MTLsQp7l",
-        passwd: "DDFSq8gCkkbQHef2RzmtW4bOj6NUhO25",
-        database: "ZfuRQoyamFdFuZSXAibB"
+        user: null,
+        passwd: null,
+        database: "test",
     },
     wechat: {
         token: 'tA2KLxGGerhvY7CJhuPsUeDrAfO',

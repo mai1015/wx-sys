@@ -19,6 +19,10 @@ module.exports = wechat(config.wechat).text(function (message, req, res, next) {
         res.reply('Node.js');
         return;
     }
+    if (message.Content === '鸡腿') {
+        res.reply('没钱吃。');
+        return;
+    }
 
     if (message.Content === 'user') {
         var wx = require('../module/wx');

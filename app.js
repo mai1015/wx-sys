@@ -5,11 +5,23 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var wechat = require('./routes/wechat');
 
 var app = express();
+
+var config;
+// config
+if (app.get('env') === 'development') {
+    config = require('./config/config.dev');
+} else {
+    config = require('./config/config');
+}
+app.set('config', config);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,6 +33,18 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//session
+var mongo = require('./services/mongodb');
+mongo.connect(config.mongodb);
+var mongoose = require('mongoose');
+app.use(session({
+    secret: 'mai1015wx',
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    resave: true,
+    saveUninitialized: true,
+}));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
@@ -46,9 +70,6 @@ if (app.get('env') === 'development') {
             error: err
         });
     });
-    app.set('config', require('./config/config.dev'));
-} else {
-    app.set('config', require('./config/config'));
 }
 
 //require('./services/database');
