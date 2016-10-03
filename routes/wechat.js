@@ -24,6 +24,11 @@ module.exports = wechat(config.wechat).text(function (message, req, res, next) {
         return;
     }
 
+    if (message.Content === 'session') {
+        res.reply(req.wxsession);
+        return;
+    }
+
     if (message.Content === 'user') {
         var wx = require('../module/wx');
         wx.getUser(message.FromUserName, function (err, result) {
